@@ -1,4 +1,3 @@
-from typing import List
 import unittest
 
 from common import ExternalApi
