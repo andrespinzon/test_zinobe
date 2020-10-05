@@ -11,7 +11,7 @@ class RegionsService:
         return pd.DataFrame(data=data)
 
     @staticmethod
-    def main_cycle():
+    def main_cycle() -> None:
         conn = ConnectionDb.connect()
         ConnectionDb.create_if_not_exist_table(conn)
 
