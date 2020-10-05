@@ -10,7 +10,7 @@ class ExternalApi:
     restapi_url: str = 'https://restcountries.eu/rest/v2/'
 
     @staticmethod
-    def __encrypt_languages(languages: List):
+    def __encrypt_languages(languages: List) -> str:
         new_languages: bytes = json.dumps(languages).encode('utf-8')
         return hashlib.sha1(new_languages).hexdigest()
 
@@ -23,7 +23,7 @@ class ExternalApi:
             return 'Bad response Api'
         return response.json()
 
-    def get_all_regions(self):
+    def get_all_regions(self) -> List:
         all_countries_url: str = f'{self.rapidapi_url}all'
         headers: Dict = {
             'x-rapidapi-host': "restcountries-v1.p.rapidapi.com",
@@ -41,7 +41,7 @@ class ExternalApi:
 
         return regions
 
-    def get_first_country_by_region(self, regions: List):
+    def get_first_country_by_region(self, regions: List) -> List:
         collections: List = []
         for region in regions:
             initial_time = time()
