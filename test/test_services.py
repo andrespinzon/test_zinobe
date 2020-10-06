@@ -18,9 +18,6 @@ class TestRegionsService(unittest.TestCase):
         data_frame = RegionsService.create_data_frame(data=data)
         self.assertEqual(type(data_frame), pd.DataFrame)
 
-    def test_main_cycle(self):
-        self.assertIsNone(RegionsService.main_cycle())
-
 
 if __name__ == '__main__':
     unittest.main()

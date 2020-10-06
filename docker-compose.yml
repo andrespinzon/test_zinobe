@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    command: mongod --port 27017
+  web:
+    build: .
+    links:
+      - mongo
+    command: bash -c "python main.py && py.test"
+    volumes:
+      - .:/test_zinobe
+    environment:
+      - ENV_DEPLOY=DOCKER
+    depends_on:
+      - mongo
+
+#  test:
+#    build: .
+#    links:
+#      - web
+#    command: py.test
+#    volumes:
+#      - .:/test_zinobe
+#    environment:
+#      - ENV_DEPLOY=local
+#    depends_on:mongo
+#      - web

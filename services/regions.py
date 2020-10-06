@@ -1,7 +1,7 @@
 import pandas as pd
 
 from common import ExternalApi
-from config import ConnectionDb
+from config import ConnectionDb, Variables
 
 
 class RegionsService:
@@ -26,5 +26,11 @@ class RegionsService:
               f'Time Mean: {data_frame["time"].mean()} '
               f'Time Total: {data_frame["time"].sum()}')
 
-        data_frame.to_sql('country', con=conn, if_exists='append', index=False)
+        if 'LOCAL' == Variables.get_env_deploy():
+            data_frame.to_sql('country', con=conn, if_exists='append', index=False)
+            print('Save in sqlite')
+        else:
+            data_dict = data_frame.to_dict('records')
+            conn.insert_many(data_dict)
+            print('Save in mongo')
         data_frame.to_json('data.json')
