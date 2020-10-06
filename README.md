@@ -1,7 +1,7 @@
 # Zinobe
 
 ### Insert in sqlite
-![alt text](test_images/Prueba Sqlite.png)
+![alt text](test_images/Prueba_Sqlite.png)
 
 
 ### Insert in mongo
